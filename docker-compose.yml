@@ -1,0 +1,45 @@
+version: '3'
+services:
+  intern:
+    build:
+      context: ./internc
+      dockerfile: Dockerfile
+    container_name: interncon
+    ports:
+      - "8111:80"
+    networks:
+      - mynet
+    volumes:
+      - myvol:/one/two
+  website:
+    build:
+      context: ./Website
+      dockerfile: Dockerfile
+    container_name: webcon
+    ports:
+      - "8222:80"
+    networks:
+      - mynet
+    volumes:
+      - myvol:/three/four
+  ramlala:
+    build:
+      context: ./ramlalaayodhya
+      dockerfile: Dockerfile
+    container_name: ramlalacon
+    ports:
+      - "8333:80"
+    networks:
+      - mynet
+    volumes:
+      - myvol:/five/six
+
+networks:
+  mynet:
+    name: mynetwork
+    driver: bridge
+
+volumes:
+  myvol:
+    name: myvolume  
+
